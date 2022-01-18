@@ -21,6 +21,8 @@ public class Receita {
 	private BigDecimal valor;
 	@NotNull
 	private LocalDateTime data;
+	
+	public Receita() {}
 
 	public Receita(String descricao, BigDecimal valor, LocalDateTime data) {
 		this.descricao = descricao;

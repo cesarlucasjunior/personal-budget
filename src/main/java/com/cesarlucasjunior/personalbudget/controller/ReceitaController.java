@@ -1,12 +1,14 @@
 package com.cesarlucasjunior.personalbudget.controller;
 
 import java.net.URI;
+import java.util.List;
 
 import javax.transaction.Transactional;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,6 +33,12 @@ public class ReceitaController {
 		Receita receita = receitaRepository.save(form.converter());
 		URI uri = uriBuilder.path("/receitas/{id}").buildAndExpand(receita.getId()).toUri();
 		return ResponseEntity.created(uri).body(new ReceitaDTO(receita));
+	}
+	
+	@GetMapping
+	public List<ReceitaDTO> search() {
+		List<Receita> receita = receitaRepository.findAll();
+		return ReceitaDTO.converter(receita);
 	}
 
 }

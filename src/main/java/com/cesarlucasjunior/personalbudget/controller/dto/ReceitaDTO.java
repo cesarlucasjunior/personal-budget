@@ -2,6 +2,8 @@ package com.cesarlucasjunior.personalbudget.controller.dto;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.cesarlucasjunior.personalbudget.model.Receita;
 
@@ -33,6 +35,14 @@ public class ReceitaDTO {
 
 	public LocalDateTime getData() {
 		return data;
+	}
+	
+	public static List<ReceitaDTO> converter(List<Receita> listaDeReceitas) {
+		List<ReceitaDTO> receitaDTO = new ArrayList<>();
+		for(Receita receita : listaDeReceitas) {
+			receitaDTO.add(new ReceitaDTO(receita));
+		}		
+		return receitaDTO;
 	}
 
 }
